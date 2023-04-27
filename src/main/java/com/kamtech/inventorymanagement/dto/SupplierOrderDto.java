@@ -1,6 +1,8 @@
 package com.kamtech.inventorymanagement.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kamtech.inventorymanagement.model.Supplier;
+import com.kamtech.inventorymanagement.model.SupplierOrder;
 import com.kamtech.inventorymanagement.model.SupplierOrderLine;
 import lombok.Builder;
 import lombok.Data;
@@ -21,8 +23,35 @@ public class SupplierOrderDto {
     private String orderNumber;
 
     private Instant orderDate;
-
+    @JsonIgnore
     private SupplierDto supplier;
-
+    @JsonIgnore
     private List<SupplierOrderLineDto> supplierOrderLines;
+
+    public SupplierOrderDto fromEntity(SupplierOrder supplierOrder){
+
+        if(supplierOrder == null){
+            return null;
+        }
+
+        return SupplierOrderDto.builder()
+                .id(supplierOrder.getId())
+                .orderNumber(supplierOrder.getOrderNumber())
+                .orderDate(supplierOrder.getOrderDate())
+                .build();
+    }
+
+    public SupplierOrder toEntity(SupplierOrderDto supplierOrderDto){
+
+        if(supplierOrderDto == null){
+            return null;
+        }
+
+        SupplierOrder supplierOrder = new SupplierOrder();
+        supplierOrder.setId(supplierOrderDto.getId());
+        supplierOrder.setOrderNumber(supplierOrderDto.getOrderNumber());
+        supplierOrder.setOrderDate(supplierOrderDto.getOrderDate());
+
+        return supplierOrder;
+    }
 }

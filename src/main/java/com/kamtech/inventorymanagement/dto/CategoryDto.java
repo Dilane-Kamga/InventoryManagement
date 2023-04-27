@@ -1,6 +1,7 @@
 package com.kamtech.inventorymanagement.dto;
 
-import com.kamtech.inventorymanagement.model.Item;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kamtech.inventorymanagement.model.Category;
 import lombok.Builder;
 import lombok.Data;
 
@@ -17,5 +18,33 @@ public class CategoryDto {
 
     private String designation;
 
+    @JsonIgnore
     private List<ItemDto> items;
+
+    public CategoryDto fromEntity(Category category) {
+
+        if(category == null) {
+            return null;
+        }
+
+        return CategoryDto.builder()
+                .id(category.getId())
+                .code(category.getCode())
+                .designation(category.getDesignation())
+                .build();
+    }
+
+    public Category toEntity(CategoryDto categoryDto) {
+
+        if(categoryDto == null) {
+            return null;
+        }
+
+        Category category = new Category();
+        category.setId(categoryDto.getId());
+        category.setCode(categoryDto.getCode());
+        category.setDesignation(categoryDto.getDesignation());
+
+        return category;
+    }
 }
