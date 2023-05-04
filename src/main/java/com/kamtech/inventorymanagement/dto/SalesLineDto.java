@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 public class SalesLineDto {
 
     private Integer id;
-    @JsonIgnore
+
     private SalesDto sales;
 
     private BigDecimal quantity;
@@ -24,7 +24,7 @@ public class SalesLineDto {
     private BigDecimal unitPrice;
 
 
-    public SalesLineDto fromEntity(SalesLine salesLine) {
+    public static SalesLineDto fromEntity(SalesLine salesLine) {
 
         if (salesLine == null) {
             return null;
@@ -34,10 +34,11 @@ public class SalesLineDto {
                 .id(salesLine.getId())
                 .quantity(salesLine.getQuantity())
                 .unitPrice(salesLine.getUnitPrice())
+                .sales(SalesDto.fromEntity(salesLine.getSales()))
                 .build();
     }
 
-    public SalesLine toEntity(SalesLineDto salesLineDto) {
+    public static SalesLine toEntity(SalesLineDto salesLineDto) {
 
         if (salesLineDto == null) {
             return null;
@@ -47,6 +48,7 @@ public class SalesLineDto {
         salesLine.setId(salesLineDto.getId());
         salesLine.setQuantity(salesLineDto.getQuantity());
         salesLine.setUnitPrice(salesLineDto.getUnitPrice());
+        salesLine.setSales(SalesDto.toEntity(salesLineDto.getSales()));
 
         return salesLine;
     }

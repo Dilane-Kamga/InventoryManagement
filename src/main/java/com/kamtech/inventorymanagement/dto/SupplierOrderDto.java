@@ -23,12 +23,12 @@ public class SupplierOrderDto {
     private String orderNumber;
 
     private Instant orderDate;
-    @JsonIgnore
+
     private SupplierDto supplier;
     @JsonIgnore
     private List<SupplierOrderLineDto> supplierOrderLines;
 
-    public SupplierOrderDto fromEntity(SupplierOrder supplierOrder){
+    public static SupplierOrderDto fromEntity(SupplierOrder supplierOrder){
 
         if(supplierOrder == null){
             return null;
@@ -41,7 +41,7 @@ public class SupplierOrderDto {
                 .build();
     }
 
-    public SupplierOrder toEntity(SupplierOrderDto supplierOrderDto){
+    public static SupplierOrder toEntity(SupplierOrderDto supplierOrderDto){
 
         if(supplierOrderDto == null){
             return null;

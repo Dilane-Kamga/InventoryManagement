@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 
 
-import javax.persistence.Embedded;
 import java.util.List;
 
 @Data
@@ -27,13 +26,14 @@ public class CustomerDto {
 
     private String picture;
 
-    @JsonIgnore
     private AddressDto address;
+
+//    private Integer idEnterprise;
 
     @JsonIgnore
     private List<CustomerOrder> customerOrders;
 
-    public CustomerDto fromEntity(Customer customer) {
+    public static CustomerDto fromEntity(Customer customer) {
 
         if(customer == null) {
             return null;
@@ -46,10 +46,12 @@ public class CustomerDto {
                 .email(customer.getEmail())
                 .phone(customer.getPhone())
                 .picture(customer.getPicture())
+                .address(AddressDto.fromEntity((customer.getAddress())))
+//                .idEnterprise(customer.getIdEnterprise())
                 .build();
     }
 
-    public Customer toEntity(CustomerDto customerDto) {
+    public static Customer toEntity(CustomerDto customerDto) {
 
         if(customerDto == null) {
             return null;
@@ -62,6 +64,8 @@ public class CustomerDto {
         customer.setEmail(customerDto.getEmail());
         customer.setPhone(customerDto.getPhone());
         customer.setPicture(customerDto.getPicture());
+        customer.setAddress(AddressDto.toEntity(customerDto.getAddress()));
+//        customer.setIdEnterprise(customerDto.getIdEnterprise());
 
         return customer;
     }

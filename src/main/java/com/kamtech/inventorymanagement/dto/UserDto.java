@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -23,16 +24,16 @@ public class UserDto {
     private String email;
 
     private String password;
-    @JsonIgnore
+
     private AddressDto address;
 
     private String picture;
-    @JsonIgnore
+
     private EnterpriseDto enterprise;
-    @JsonIgnore
+
     private List<RolesDto> roles;
 
-    public UserDto fromEntity(User user){
+    public static UserDto fromEntity(User user){
 
         if(user == null){
             return null;
@@ -46,10 +47,18 @@ public class UserDto {
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .picture(user.getPicture())
+                .address(AddressDto.fromEntity(user.getAddress()))
+                .enterprise(EnterpriseDto.fromEntity(user.getEnterprise()))
+                .roles(
+                    user.getRoles() != null ?
+                            user.getRoles().stream()
+                                    .map(RolesDto::fromEntity)
+                                    .collect(Collectors.toList()) : null
+                )
                 .build();
     }
 
-    public User toEntity(UserDto userDto){
+    public static User toEntity(UserDto userDto){
 
         if(userDto == null){
             return null;
@@ -63,7 +72,8 @@ public class UserDto {
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setPicture(userDto.getPicture());
-
+        user.setAddress(AddressDto.toEntity(userDto.getAddress()));
+        user.setEnterprise(EnterpriseDto.toEntity(userDto.getEnterprise()));
         return user;
     }
 }

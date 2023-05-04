@@ -21,7 +21,7 @@ public class AddressDto {
     private String country;
 
 
-    public AddressDto fromEntity(Address address) {
+    public static AddressDto fromEntity(Address address) {
 
         if(address == null) {
             return null;
@@ -36,7 +36,7 @@ public class AddressDto {
                 .build();
     }
 
-    public Address toEntity(AddressDto addressDto) {
+    public static Address toEntity(AddressDto addressDto) {
 
         if(addressDto == null) {
             return null;

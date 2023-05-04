@@ -1,9 +1,7 @@
 package com.kamtech.inventorymanagement.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kamtech.inventorymanagement.model.CustomerOrder;
+
 import com.kamtech.inventorymanagement.model.CustomerOrderLine;
-import com.kamtech.inventorymanagement.model.Item;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,10 +13,9 @@ import java.math.BigDecimal;
 public class CustomerOrderLineDto {
 
     private Integer id;
-    @JsonIgnore
+
     private ItemDto item;
 
-    @JsonIgnore
     private CustomerOrderDto customerOrder;
 
     private BigDecimal quantity;
@@ -26,7 +23,7 @@ public class CustomerOrderLineDto {
     private BigDecimal unitPrice;
 
 
-    public CustomerOrderLineDto fromEntity(CustomerOrderLine customerOrderLine) {
+    public static CustomerOrderLineDto fromEntity(CustomerOrderLine customerOrderLine) {
 
         if(customerOrderLine == null) {
             return null;
@@ -36,10 +33,12 @@ public class CustomerOrderLineDto {
                 .id(customerOrderLine.getId())
                 .quantity(customerOrderLine.getQuantity())
                 .unitPrice(customerOrderLine.getUnitPrice())
+                .customerOrder(CustomerOrderDto.fromEntity(customerOrderLine.getCustomerOrder()))
+                .item(ItemDto.fromEntity(customerOrderLine.getItem()))
                 .build();
     }
 
-    public CustomerOrderLine toEntity(CustomerOrderLineDto customerOrderLineDto) {
+    public static CustomerOrderLine toEntity(CustomerOrderLineDto customerOrderLineDto) {
 
         if(customerOrderLineDto == null) {
             return null;
@@ -49,6 +48,8 @@ public class CustomerOrderLineDto {
         customerOrderLine.setId(customerOrderLineDto.getId());
         customerOrderLine.setQuantity(customerOrderLineDto.getQuantity());
         customerOrderLine.setUnitPrice(customerOrderLineDto.getUnitPrice());
+        customerOrderLine.setCustomerOrder(CustomerOrderDto.toEntity(customerOrderLineDto.getCustomerOrder()));
+        customerOrderLine.setItem(ItemDto.toEntity(customerOrderLineDto.getItem()));
 
         return customerOrderLine;
     }

@@ -17,16 +17,16 @@ import java.math.BigDecimal;
 public class SupplierOrderLineDto {
 
     private Integer id;
-    @JsonIgnore
+
     private ItemDto item;
-    @JsonIgnore
+
     private SupplierOrderDto supplierOrder;
 
     private BigDecimal quantity;
 
     private BigDecimal unitPrice;
 
-    public SupplierOrderLineDto fromEntity(SupplierOrderLine supplierOrderLine){
+    public static SupplierOrderLineDto fromEntity(SupplierOrderLine supplierOrderLine){
 
         if(supplierOrderLine == null){
             return null;
@@ -36,12 +36,12 @@ public class SupplierOrderLineDto {
                 .id(supplierOrderLine.getId())
                 .quantity(supplierOrderLine.getQuantity())
                 .unitPrice(supplierOrderLine.getUnitPrice())
-                .item(ItemDto.builder().id(supplierOrderLine.getItem().getId()).build())
-                .supplierOrder(SupplierOrderDto.builder().id(supplierOrderLine.getSupplierOrder().getId()).build())
+                .item(ItemDto.fromEntity(supplierOrderLine.getItem()))
+                .supplierOrder(SupplierOrderDto.fromEntity(supplierOrderLine.getSupplierOrder()))
                 .build();
     }
 
-    public SupplierOrderLine toEntity(SupplierOrderLineDto supplierOrderLineDto){
+    public static SupplierOrderLine toEntity(SupplierOrderLineDto supplierOrderLineDto){
 
         if(supplierOrderLineDto == null){
             return null;
@@ -51,6 +51,8 @@ public class SupplierOrderLineDto {
         supplierOrderLine.setId(supplierOrderLineDto.getId());
         supplierOrderLine.setQuantity(supplierOrderLineDto.getQuantity());
         supplierOrderLine.setUnitPrice(supplierOrderLineDto.getUnitPrice());
+        supplierOrderLine.setItem(ItemDto.toEntity(supplierOrderLineDto.getItem()));
+        supplierOrderLine.setSupplierOrder(SupplierOrderDto.toEntity(supplierOrderLineDto.getSupplierOrder()));
 
         return supplierOrderLine;
     }

@@ -21,10 +21,9 @@ public class StkMvtDto {
     private BigDecimal quantity;
 
     private MvtType mvtType;
-    @JsonIgnore
     private ItemDto item;
 
-    public StkMvtDto fromEntity(StkMvt stkMvt){
+    public static StkMvtDto fromEntity(StkMvt stkMvt){
 
         if(stkMvt == null){
             return null;
@@ -36,10 +35,11 @@ public class StkMvtDto {
                 .quantity(stkMvt.getQuantity())
                 .mvtType(stkMvt.getMvtType())
                 .item(ItemDto.builder().id(stkMvt.getItem().getId()).build())
+                .item(ItemDto.fromEntity(stkMvt.getItem()))
                 .build();
     }
 
-    public StkMvt toEntity(StkMvtDto stkMvtDto){
+    public static StkMvt toEntity(StkMvtDto stkMvtDto){
 
         if(stkMvtDto == null){
             return null;
@@ -50,6 +50,7 @@ public class StkMvtDto {
         stkMvt.setMvtDate(stkMvtDto.getMvtDate());
         stkMvt.setQuantity(stkMvtDto.getQuantity());
         stkMvt.setMvtType(stkMvtDto.getMvtType());
+        stkMvt.setItem(ItemDto.toEntity(stkMvtDto.getItem()));
 
         return stkMvt;
     }

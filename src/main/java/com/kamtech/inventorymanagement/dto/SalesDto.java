@@ -18,7 +18,7 @@ public class SalesDto {
 
     private String comment;
 
-    public SalesDto fromEntity(Sales sales) {
+    public static SalesDto fromEntity(Sales sales) {
 
         if (sales == null) {
             return null;
@@ -32,7 +32,7 @@ public class SalesDto {
                 .build();
     }
 
-    public Sales toEntity(SalesDto salesDto) {
+    public static Sales toEntity(SalesDto salesDto) {
 
         if (salesDto == null) {
             return null;

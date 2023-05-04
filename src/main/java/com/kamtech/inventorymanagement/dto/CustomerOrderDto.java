@@ -1,9 +1,7 @@
 package com.kamtech.inventorymanagement.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kamtech.inventorymanagement.model.Customer;
 import com.kamtech.inventorymanagement.model.CustomerOrder;
-import com.kamtech.inventorymanagement.model.CustomerOrderLine;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,14 +18,13 @@ public class CustomerOrderDto {
 
     private Instant orderDate;
 
-    @JsonIgnore
     private CustomerDto customer;
 
     @JsonIgnore
     private List<CustomerOrderLineDto> customerOrderLines;
 
 
-    public CustomerOrderDto fromEntity(CustomerOrder customerOrder) {
+    public static CustomerOrderDto fromEntity(CustomerOrder customerOrder) {
 
         if(customerOrder == null) {
             return null;
@@ -37,10 +34,11 @@ public class CustomerOrderDto {
                 .id(customerOrder.getId())
                 .orderNumber(customerOrder.getOrderNumber())
                 .orderDate(customerOrder.getOrderDate())
+                .customer(CustomerDto.fromEntity(customerOrder.getCustomer()))
                 .build();
     }
 
-    public CustomerOrder toEntity(CustomerOrderDto customerOrderDto) {
+    public static CustomerOrder toEntity(CustomerOrderDto customerOrderDto) {
 
         if(customerOrderDto == null) {
             return null;
@@ -50,6 +48,7 @@ public class CustomerOrderDto {
         customerOrder.setId(customerOrderDto.getId());
         customerOrder.setOrderNumber(customerOrderDto.getOrderNumber());
         customerOrder.setOrderDate(customerOrderDto.getOrderDate());
+        customerOrder.setCustomer(CustomerDto.toEntity(customerOrderDto.getCustomer()));
 
         return customerOrder;
     }

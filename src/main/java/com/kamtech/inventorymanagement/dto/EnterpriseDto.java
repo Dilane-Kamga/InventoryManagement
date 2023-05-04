@@ -22,7 +22,6 @@ public class EnterpriseDto {
 
     private String taxId;
 
-    @JsonIgnore
     private AddressDto address;
 
     private String phone;
@@ -36,7 +35,7 @@ public class EnterpriseDto {
     @JsonIgnore
     private List<UserDto> users;
 
-    public EnterpriseDto fromEntity(Enterprise enterprise) {
+    public static EnterpriseDto fromEntity(Enterprise enterprise) {
 
         if(enterprise == null) {
             return null;
@@ -51,10 +50,11 @@ public class EnterpriseDto {
                 .email(enterprise.getEmail())
                 .website(enterprise.getWebsite())
                 .picture(enterprise.getPicture())
+                .address(AddressDto.fromEntity(enterprise.getAddress()))
                 .build();
     }
 
-    public Enterprise toEntity(EnterpriseDto enterpriseDto) {
+    public static Enterprise toEntity(EnterpriseDto enterpriseDto) {
 
         if(enterpriseDto == null) {
             return null;
@@ -69,7 +69,7 @@ public class EnterpriseDto {
         enterprise.setEmail(enterpriseDto.getEmail());
         enterprise.setWebsite(enterpriseDto.getWebsite());
         enterprise.setPicture(enterpriseDto.getPicture());
-
+        enterprise.setAddress(AddressDto.toEntity(enterpriseDto.getAddress()));
         return enterprise;
     }
 }

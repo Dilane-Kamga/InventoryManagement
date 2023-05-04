@@ -25,10 +25,10 @@ public class ItemDto {
 
     private String picture;
 
-    @JsonIgnore
+
     private CategoryDto category;
 
-    public ItemDto fromEntity( Item item) {
+    public static ItemDto fromEntity( Item item) {
 
         if(item == null) {
             return null;
@@ -42,10 +42,11 @@ public class ItemDto {
                 .taxRate(item.getTaxRate())
                 .unitPriceTaxed(item.getUnitPriceTaxed())
                 .picture(item.getPicture())
+                .category(CategoryDto.fromEntity(item.getCategory()))
                 .build();
     }
 
-    public Item toEntity(ItemDto itemDto) {
+    public static Item toEntity(ItemDto itemDto) {
 
         if(itemDto == null) {
             return null;
@@ -59,6 +60,7 @@ public class ItemDto {
         item.setTaxRate(itemDto.getTaxRate());
         item.setUnitPriceTaxed(itemDto.getUnitPriceTaxed());
         item.setPicture(itemDto.getPicture());
+        item.setCategory(CategoryDto.toEntity(itemDto.getCategory()));
 
         return item;
     }

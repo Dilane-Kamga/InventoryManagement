@@ -31,7 +31,7 @@ public class SupplierDto {
     @JsonIgnore
     private List<SupplierOrderDto> supplierOrders;
 
-    public SupplierDto fromEntity(Supplier supplier){
+    public static SupplierDto fromEntity(Supplier supplier){
 
         if(supplier == null){
             return null;
@@ -44,10 +44,11 @@ public class SupplierDto {
                 .email(supplier.getEmail())
                 .phone(supplier.getPhone())
                 .picture(supplier.getPicture())
+                .address(AddressDto.fromEntity(supplier.getAddress()))
                 .build();
     }
 
-    public Supplier toEntity(SupplierDto supplierDto){
+    public static Supplier toEntity(SupplierDto supplierDto){
 
         if(supplierDto == null){
             return null;
@@ -60,6 +61,7 @@ public class SupplierDto {
         supplier.setEmail(supplierDto.getEmail());
         supplier.setPhone(supplierDto.getPhone());
         supplier.setPicture(supplierDto.getPicture());
+        supplier.setAddress(AddressDto.toEntity(supplierDto.getAddress()));
 
         return supplier;
     }
