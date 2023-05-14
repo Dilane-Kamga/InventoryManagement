@@ -19,6 +19,8 @@ public class SalesLineDto {
 
     private SalesDto sales;
 
+    private ItemDto item;
+
     private BigDecimal quantity;
 
     private BigDecimal unitPrice;
@@ -35,6 +37,7 @@ public class SalesLineDto {
                 .quantity(salesLine.getQuantity())
                 .unitPrice(salesLine.getUnitPrice())
                 .sales(SalesDto.fromEntity(salesLine.getSales()))
+                .item(ItemDto.fromEntity(salesLine.getItem()))
                 .build();
     }
 
@@ -49,6 +52,7 @@ public class SalesLineDto {
         salesLine.setQuantity(salesLineDto.getQuantity());
         salesLine.setUnitPrice(salesLineDto.getUnitPrice());
         salesLine.setSales(SalesDto.toEntity(salesLineDto.getSales()));
+        salesLine.setItem(ItemDto.toEntity(salesLineDto.getItem()));
 
         return salesLine;
     }

@@ -6,6 +6,7 @@ import lombok.Data;
 
 
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @Builder
@@ -17,6 +18,8 @@ public class SalesDto {
     private Instant salesDate;
 
     private String comment;
+
+    private List<SalesLineDto> salesLineDto;
 
     public static SalesDto fromEntity(Sales sales) {
 
