@@ -24,4 +24,7 @@ public class StkMvt extends AbstractEntity{
         @ManyToOne
         @JoinColumn(name = "item_id")
         private Item item;
+
+        @Column(name = "id_enterprise")
+        private Integer idEnterprise;
 }

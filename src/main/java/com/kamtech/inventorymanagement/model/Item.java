@@ -28,4 +28,7 @@ public class Item extends AbstractEntity{
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @Column(name = "id_enterprise")
+    private Integer idEnterprise;
 }

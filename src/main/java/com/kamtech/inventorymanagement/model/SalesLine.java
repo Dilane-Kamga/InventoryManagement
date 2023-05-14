@@ -20,4 +20,7 @@ public class SalesLine extends AbstractEntity{
     private BigDecimal quantity;
     @Column(name = "unit_price")
     private BigDecimal unitPrice;
+
+    @Column(name = "id_enterprise")
+    private Integer idEnterprise;
 }

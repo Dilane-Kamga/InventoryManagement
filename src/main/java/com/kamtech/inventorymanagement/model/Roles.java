@@ -19,4 +19,7 @@ public class Roles extends AbstractEntity{
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "id_enterprise")
+    private Integer idEnterprise;
+
 }

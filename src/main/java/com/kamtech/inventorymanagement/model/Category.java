@@ -20,8 +20,8 @@ public class Category extends AbstractEntity{
     @Column(name = "designation")
     private String designation;
 
-//    @Column(name = "id_enterprise")
-//    private Integer idEnterprise;
+    @Column(name = "id_enterprise")
+    private Integer idEnterprise;
     @OneToMany(mappedBy = "category")
     private List<Item> items;
 
