@@ -14,13 +14,13 @@ import java.util.List;
 public class CustomerOrderDto {
 
     private Integer id;
+
     private String orderNumber;
 
     private Instant orderDate;
 
     private CustomerDto customer;
-
-    @JsonIgnore
+    
     private List<CustomerOrderLineDto> customerOrderLines;
 
 
