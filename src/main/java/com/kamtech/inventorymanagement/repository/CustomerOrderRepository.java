@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, Integer> {
 
-    Optional<CustomerOrder> findByCode(String orderNumber);
+    Optional<CustomerOrder> findByOrderNumber(String orderNumber);
 }

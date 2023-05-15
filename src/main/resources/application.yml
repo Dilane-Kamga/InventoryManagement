@@ -21,3 +21,10 @@ spring:
 server:
   port: 8081
 
+# Configure flick API
+flickr:
+  apiKey: 0a2e56fd923296d7be07a4ca1266eb34
+  apiSecret: ab1da2be832391e4
+  appKey: 72157720882332575-4c5282da566d1b81
+  appSecret: 548edf915a59bb9c
+

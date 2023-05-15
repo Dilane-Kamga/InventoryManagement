@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface SalesRepository extends JpaRepository<Sales, Integer> {
 
-    Optional<Sales> findByCode(String code);
+    Optional<Sales> findBySalesCode(String salesCode);
 }

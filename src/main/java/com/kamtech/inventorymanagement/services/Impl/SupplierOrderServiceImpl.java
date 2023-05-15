@@ -110,7 +110,7 @@ public class SupplierOrderServiceImpl implements SupplierOrderService{
             return null;
         }
 
-        return supplierOrderRepository.findByCode(orderNumber)
+        return supplierOrderRepository.findByOrderNumber(orderNumber)
                 .map(SupplierOrderDto::fromEntity).
                 orElseThrow(() -> new InvalidEntityException("Supplier Order with code " + orderNumber + " not found", ErrorCodes.SUPPLIER_ORDER_NOT_FOUND));
     }

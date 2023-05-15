@@ -114,7 +114,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService{
             return null;
         }
 
-        return customerOrderRepository.findByCode(code)
+        return customerOrderRepository.findByOrderNumber(code)
                 .map(CustomerOrderDto::fromEntity)
                 .orElseThrow(()
                         -> new EntityNotFoundException("Customer Order with Code " + code + " not found", ErrorCodes.CUSTOMER_ORDER_NOT_FOUND

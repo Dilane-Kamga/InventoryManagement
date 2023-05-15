@@ -93,7 +93,7 @@ public class SalesServiceImpl implements SalesService {
             return null;
         }
 
-        return salesRepository.findByCode(code)
+        return salesRepository.findBySalesCode(code)
                 .map(SalesDto::fromEntity)
                 .orElseThrow(() ->
                         new InvalidEntityException("No sales found with code = " + code, ErrorCodes.SALES_NOT_FOUND));

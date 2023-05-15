@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface SupplierOrderRepository extends JpaRepository<SupplierOrder, Integer>{
 
-    Optional<SupplierOrder> findByCode(String orderNumber);
+    Optional<SupplierOrder> findByOrderNumber(String orderNumber);
 }
