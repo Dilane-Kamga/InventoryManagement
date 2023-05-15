@@ -6,6 +6,10 @@ spring:
     password: Dilane237
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+
   jpa:
     database: mysql
     show-sql: false
@@ -27,4 +31,9 @@ flickr:
   apiSecret: ab1da2be832391e4
   appKey: 72157720882332575-4c5282da566d1b81
   appSecret: 548edf915a59bb9c
+
+
+
+
+
 
