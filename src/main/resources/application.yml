@@ -13,13 +13,15 @@ spring:
   jpa:
     database: mysql
     show-sql: false
+    properties:
+      hibernate:
+        ejb:
+          interceptor: com.kamtech.inventorymanagement.interceptor
 
 ## Hibernate DDL auto (create, create-drop, validate, update)
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 ## Specify the port to use
 server:

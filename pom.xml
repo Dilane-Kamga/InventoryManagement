@@ -91,7 +91,6 @@
                     </excludes>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>com.github.kongchen</groupId>
                 <artifactId>swagger-maven-plugin</artifactId>
@@ -111,7 +110,7 @@
                                 <contact>
                                     <email>dilanekamga777@gmail.com</email>
                                     <name>Dilane FOGUE KAMGA</name>
-                                    <url>/</url>
+                                    <url>https://www.linkedin.com/in/dilane-fogue-kamga/</url>
                                 </contact>
                             </info>
                             <outputPath>${project.build.directory}</outputPath>
