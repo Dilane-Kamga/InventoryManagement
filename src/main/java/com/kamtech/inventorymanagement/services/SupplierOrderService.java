@@ -1,6 +1,6 @@
 package com.kamtech.inventorymanagement.services;
 
-import com.kamtech.inventorymanagement.dto.SupplierDto;
+
 import com.kamtech.inventorymanagement.dto.SupplierOrderDto;
 
 import java.util.List;
